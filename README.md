@@ -33,7 +33,7 @@ The dataset was created and managed in PostgreSQL using SQL queries and then con
 
 ## Dashboard Preview
 
-![Dashboard](Dashboard_overview.png)
+![Dashboard](Dashboard_overview.pdf)
 
 ---
 
