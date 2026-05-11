@@ -1,0 +1,74 @@
+-- Created database/table
+
+CREATE DATABASE students_attendance;
+
+CREATE TABLE student_attendance (
+    student_id INT,
+    student_name VARCHAR(100),
+    grade_level INT,
+    class_name VARCHAR(100),
+    class_date DATE,
+    attendance_status VARCHAR(20),
+    learning_mode VARCHAR(20)
+);
+
+-- Inserted data values
+
+INSERT INTO student_attendance
+(student_id, student_name, grade_level, class_name, class_date, attendance_status, learning_mode)
+VALUES
+(1021, 'Ava', 8, 'Math', '2021-03-02', 'Present', 'Remote'),
+(1022, 'John', 9, 'Science', '2021-12-03', 'Absent', 'Remote'),
+(1023, 'Jose', 9, 'Art', '2021-09-08', 'Late', 'Hybrid'),
+(1024, 'Kyle', 10, 'English', '2022-02-02', 'Late', 'In-Person'),
+(1025, 'Maria', 11, 'Math', '2020-04-05', 'Late', 'Remote'),
+(1026, 'Mike', 9, 'Gym', '2021-12-04', 'Present', 'Remote'),
+(1027, 'Sam', 7, 'History', '2022-12-02', 'Present', 'Hybrid'),
+(1028, 'Sky', 6, 'Art', '2021-06-05', 'Present', 'Remote');
+
+
+-- Analysis Queries 
+
+--Selecting All attendance records
+select *
+from student_attendance;
+
+--Total Number of Students Attendance
+SELECT COUNT(DISTINCT student_id) AS total_students
+FROM student_attendance;
+
+--Total Attendance Status Breakdown for Each Learning Mode
+SELECT attendance_status, COUNT(*) AS total_count
+FROM student_attendance
+GROUP BY attendance_status;
+
+--Learning Mode Breakdown
+SELECT learning_mode, COUNT(*) AS total_count
+FROM student_attendance
+group by learning_mode;
+
+--Attedance By grade Level
+SELECT grade_level, attendance_status,COUNT(*) AS total_gradelevel
+FROM student_attendance
+GROUP BY grade_level, attendance_status;
+
+--Attendance trend overtime
+SELECT class_date, attendance_status, COUNT(*) AS total_count
+FROM student_attendance
+GROUP BY class_date, attendance_status
+ORDER BY class_date;
+
+
+--Total percentage of Attendance Status of 'Abesen' and 'Present' 
+
+--** Percentage Of Total of present attendance
+SELECT
+COUNT(CASE WHEN attendance_status = 'Present' THEN 1 END) * 100.0/COUNT(*) AS attendance_percentage
+     FROM student_attendance;
+
+--** Percentage of Total absent attendance  for students
+SELECT
+COUNT(CASE WHEN attendance_status = 'Absent' THEN 1 END) * 100.0/COUNT(*) AS absent_percentage
+FROM student_attendance;
+
+
