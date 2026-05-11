@@ -66,9 +66,12 @@ SELECT
 COUNT(CASE WHEN attendance_status = 'Present' THEN 1 END) * 100.0/COUNT(*) AS attendance_percentage
      FROM student_attendance;
 
+-Equals to Pecentage of 50 attendance 
+
 --** Percentage of Total absent attendance  for students
 SELECT
 COUNT(CASE WHEN attendance_status = 'Absent' THEN 1 END) * 100.0/COUNT(*) AS absent_percentage
 FROM student_attendance;
 
+-Euqals to 12.5 Percentage of Absences 
 
